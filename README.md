@@ -23,7 +23,22 @@ installation, or certified safety system is connected.
 To be added...
 
 ## Factory Acceptance Test (FAT)
-To be added...
+**Plan ID:** FAT  
+**Revision:** 0.1  
+**Planned Tests and Results**
+
+| ID | Setup / Action | Expected Result | Status | Screenshot Evidence |
+|---|---|---|---|---|
+| FAT01 | Auto mode, level=34%, pump off; resume | Pump starts within a tick | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT01.png"><img src="./assets/screenshots/FAT01.png" width="160" alt="FAT01 test evidence"></a> |
+| FAT02 | Auto mode, level=76%, pump on; resume | Pump stops within a tick | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT02.png"><img src="./assets/screenshots/FAT02.png" width="160" alt="FAT02 test evidence"></a> |
+| FAT03 | Auto mode, level=50%, pump on | Pump remains on (hysteresis) | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT03.png"><img src="./assets/screenshots/FAT03.png" width="160" alt="FAT03 test evidence"></a> |
+| FAT04 | Manual mode, level=50%, demand on | Pump runs | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT04.png"><img src="./assets/screenshots/FAT04.png" width="160" alt="FAT04 test evidence"></a> |
+| FAT05 | Manual mode, level=50%, demand off | Pump stops | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT05.png"><img src="./assets/screenshots/FAT05.png" width="160" alt="FAT05 test evidence"></a> |
+| FAT06 | Pause and set level=15% | LOW_LEVEL alarm active | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT06.png"><img src="./assets/screenshots/FAT06.png" width="160" alt="FAT06 test evidence"></a> |
+| FAT07 | Pause and set level=90% | HIGH_LEVEL alarm active | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT07.png"><img src="./assets/screenshots/FAT07.png" width="160" alt="FAT07 test evidence"></a> |
+| FAT08 | Manual mode, demand on, force level=96% | Trip latches and pump stops | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT08.png"><img src="./assets/screenshots/FAT08.png" width="160" alt="FAT08 test evidence"></a> |
+| FAT09 | With trip latched, level=50% | Pump stays off | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT09.png"><img src="./assets/screenshots/FAT09.png" width="160" alt="FAT09 test evidence"></a> |
+| FAT10 | Auto mode, level=0% until 75% | No system errors, the tank level reaches 75% and then drops | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT10.png"><img src="./assets/screenshots/FAT10.png" width="160" alt="FAT10 test evidence"></a> |
 
 ## Validity and Statistics analysis (PyTest and SQL)
 To be added...
