@@ -1,0 +1,6 @@
+{
+  "title": "Pump Station Supervisory Control",
+  "description": "Simulated pump station HMI, control, alarms and historian",
+  "enabled": true,
+  "inheritable": false
+}
