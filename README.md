@@ -20,7 +20,10 @@ installation, or certified safety system is connected.
 - Deterministic controller model with automated tests.
 
 ## Demo
-To be added...
+<a href="./assets/gif/demo.gif">
+  <img src="./assets/gif/demo.gif" width="700"
+       alt="Pump Station Demonstration">
+</a>
 
 ## Factory Acceptance Test (FAT)
 **Plan ID:** FAT  
@@ -40,8 +43,36 @@ To be added...
 | FAT09 | With trip latched, level=50% | Pump stays off | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT09.png"><img src="./assets/screenshots/FAT09.png" width="160" alt="FAT09 test evidence"></a> |
 | FAT10 | Auto mode, level=0% until 75% | No system errors, the tank level reaches 75% and then drops | ![PASS](https://img.shields.io/badge/PASS-2ea44f?style=flat-square) | <a href="./assets/screenshots/FAT10.png"><img src="./assets/screenshots/FAT10.png" width="160" alt="FAT10 test evidence"></a> |
 
-## Validity and Statistics analysis (PyTest and SQL)
-To be added...
+## Historian Data Validation — PyTest
+Automated tests are implemented using **PyTest** to validate historical process measurements exported from the Ignition SCADA historian into `data/tank_level_history.csv`.
+
+The tests verify data availability, measurement validity, data quality, and chronological consistency. They help identify potential issues with the simulation data and historian records before the measurements are used for further analysis.
+
+### Test Cases
+| Test | Description | Pass Criteria |
+|---|---|---|
+| `test_historian_contains_data` | Verifies that the exported historian dataset contains at least one measurement | CSV contains one or more data records |
+| `test_tank_levels_within_limits` | Checks that every recorded tank-level measurement falls within the physically valid range | All tank levels are between 0% and 100%, inclusive |
+| `test_all_samples_have_good_quality` | Validates the Ignition historian quality code associated with every measurement | All recorded quality codes equal `192` (Good quality in the configured historian schema) |
+| `test_timestamps_are_ordered` | Verifies that historical measurements are stored in chronological order | Timestamps are in nondecreasing order, allowing equal timestamps |
+
+### Running the tests
+1) Adjust the SQLite database URL in data/data_exporter.py
+2) Export the historian data:
+```bash
+python3 ./data/data_exporter.py
+```
+3) Run tests:
+```bash
+python3 -m pytest ./tests/test_historian_data.py -v
+```
+
+### Results
+<a href="./assets/screenshots/historian_test_results.png">
+  <img src="./assets/screenshots/historian_test_results.png" width="700"
+       alt="Pump Station Demonstration">
+</a>
+
 
 ## Repository map
 To be added...
