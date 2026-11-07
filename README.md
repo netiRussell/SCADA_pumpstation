@@ -58,13 +58,16 @@ The tests verify data availability, measurement validity, data quality, and chro
 
 ### Running the tests
 1) Adjust the SQLite database URL in data/data_exporter.py
+```python
+DB_PATH = Path("YOUR_PATH_HERE.db")
+```
 2) Export the historian data:
 ```bash
 python3 ./data/data_exporter.py
 ```
 3) Run tests:
 ```bash
-python3 -m pytest ./tests/test_historian_data.py -v
+python3 -m pytest ./tests/test_data.py -v
 ```
 
 ### Results
@@ -75,8 +78,15 @@ python3 -m pytest ./tests/test_historian_data.py -v
 
 
 ## Repository map
-To be added...
-- `path` — description
+- `src/ignition/pump_sim.py` — Simulated tank dynamics, automatic pump control, manual operation, and protective interlocks
+- `src/ignition/timer_event.py` — Gateway timer script that invokes `pump_sim.tick()` to update the simulation
+- `tests/test_timer_event.py` — PyTest regression test verifying that the Gateway timer script contains the required `pump_sim.tick()` call
+- `tests/test_historian_data.py` — PyTest validation of historian data availability, measurement limits, quality codes, and timestamp ordering (verify that this file is committed)
+- `data/data_exporter.py` — Python 3 script using SQL to extract historical tank-level measurements from the Ignition SQLite database
+- `data/tank_level_history.csv` — Exported historical tank-level measurements used for data validation
+- `assets/*` — Demonstration and Test Evidence
+- `.github/workflows/tests.yml` — GitHub Actions workflow for automated testing on pushes and pull requests
+
 
 ## Technical limitations
 The simulation uses a simplified steady-flow water balance with a
